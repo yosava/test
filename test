@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Style & Ciseaux - Salon de Coiffure</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0; padding: 0; background: #f7f7f7;
+    color: #333;
+  }
+  header {
+    background: #222;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+  }
+  header img {
+    max-width: 100px;
+    border-radius: 10px;
+  }
+  main {
+    max-width: 600px;
+    margin: 30px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  h1 {
+    margin-bottom: 10px;
+  }
+  form label {
+    display: block;
+    margin: 12px 0 6px;
+  }
+  input, select, button {
+    width: 100%;
+    padding: 8px;
+    font-size: 1rem;
+  }
+  button {
+    background: #222;
+    color: white;
+    border: none;
+    margin-top: 15px;
+    cursor: pointer;
+  }
+  button:hover {
+    background: #444;
+  }
+  #reservations {
+    margin-top: 30px;
+  }
+  .reservation {
+    background: #eee;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+  }
+</style>
+</head>
+<body>
+<header>
+  <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=100&q=80" alt="Salon de coiffure" />
+  <h1>Style & Ciseaux</h1>
+  <p>Votre salon de coiffure moderne et stylé</p>
+</header>
+<main>
+  <h2>Réservez votre coupe</h2>
+  <form id="bookingForm">
+    <label for="clientName">Nom :</label>
+    <input type="text" id="clientName" required />
+
+    <label for="service">Type de coupe :</label>
+    <select id="service" required>
+      <option value="">-- Choisissez une coupe --</option>
+      <option value="Coupe homme">Coupe homme</option>
+      <option value="Coupe femme">Coupe femme</option>
+      <option value="Coupe enfant">Coupe enfant</option>
+      <option value="Coloration">Coloration</option>
+    </select>
+
+    <label for="date">Date :</label>
+    <input type="date" id="date" required />
+
+    <label for="time">Heure :</label>
+    <input type="time" id="time" required />
+
+    <button type="submit">Réserver</button>
+  </form>
+
+  <section id="reservations">
+    <h2>Rendez-vous réservés</h2>
+    <div id="reservationList"></div>
+  </section>
+</main>
+
+<script>
+  const form = document.getElementById('bookingForm');
+  const reservationList = document.getElementById('reservationList');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById('clientName').value;
+    const service = document.getElementById('service').value;
+    const date = document.getElementById('date').value;
+    const time = document.getElementById('time').value;
+
+    const newResa = document.createElement('div');
+    newResa.classList.add('reservation');
+    newResa.textContent = `${name} - ${service} - ${date} à ${time}`;
+
+    reservationList.appendChild(newResa);
+
+    form.reset();
+  });
+</script>
+</body>
+</html>
